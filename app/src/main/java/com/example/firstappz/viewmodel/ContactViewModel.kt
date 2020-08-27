@@ -6,6 +6,8 @@ import android.text.Html
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.firstappz.data.Contact
 import com.example.firstappz.data.ContactDao
@@ -20,6 +22,7 @@ class ContactViewModel(
 
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private var contact = MutableLiveData<Contact?>()
 
     private val contacts = contactDao.get()
     val contactString = Transformations.map(contacts) { contacts ->
@@ -34,6 +37,7 @@ class ContactViewModel(
                 append(it.id)
                 append(" : ")
                 append(it.name)
+                append("<br>")
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -56,11 +60,35 @@ class ContactViewModel(
             insert(newContact)
         }
     }
-
     private suspend fun insert(contact: Contact) {
         withContext(Dispatchers.IO) {
             contactDao.insert(contact)
         }
     }
+
+
+//fun clear
+    fun onClear() {
+        uiScope.launch {
+            clear()
+            contact.value = null
+        }
+    }
+    private val _navigateToSleepQuality = MutableLiveData<Contact>()
+
+    val navigateToSleepQuality: LiveData<Contact>
+        get() = _navigateToSleepQuality
+
+    fun doneNavigating() {
+        _navigateToSleepQuality.value = null
+    }
+
+    suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            contactDao.clear()
+        }
+    }
+
+
 
 }

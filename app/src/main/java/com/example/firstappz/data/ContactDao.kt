@@ -11,4 +11,6 @@ interface ContactDao {
     fun insert(contact: Contact)
     @Query("SELECT * from contact_table")
     fun get(): LiveData<List<Contact>>
+    @Query("DELETE FROM contact_table")
+    fun clear()
 }

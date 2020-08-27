@@ -27,19 +27,37 @@
                 android:ems="10"
                 android:inputType="text" />
 
-
             <Button
                 android:id="@+id/buttonInsert"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="@{()->contactViewModel.onContactAdd()}"
-                android:text="Button" />
+                android:text="ADD" />
 
-            <TextView
-                android:id="@+id/textview"
+            <Button
+                android:id="@+id/clearall"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@{contactViewModel.contactString}" />
+                android:layout_height="37dp"
+                android:text="clearall"
+                android:onClick="@{() -> contactViewModel.onClear()}"
+                />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="638dp"
+                        android:text="@{contactViewModel.contactString}" />
+                </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 
