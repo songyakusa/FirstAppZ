@@ -48,4 +48,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
 
+    //Material
+    def supportlibVersion = '1.2.0'
+    implementation "com.google.android.material:material:$supportlibVersion"
+
 }
