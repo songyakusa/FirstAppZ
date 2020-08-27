@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/aboutmeFragment"
-        android:name="chimjan.xkalux.mobilehomework_firstapp.AboutmeFragment"
+        android:name="com.example.firstappz.fragmant.AboutmeFragmant"
         android:label="fragment_aboutme"
         tools:layout="@layout/fragment_aboutme" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
-        android:name="chimjan.xkalux.mobilehomework_firstapp.ContactFragment"
+        android:name="com.example.firstappz.fragmant.ContactFragment"
         android:label="fragment_contact"
         tools:layout="@layout/fragment_contact" >
         <action
