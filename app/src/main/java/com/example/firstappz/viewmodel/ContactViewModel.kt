@@ -51,12 +51,11 @@ class ContactViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
-
+//fun add
     fun onContactAdd() {
         uiScope.launch {
             val newContact = Contact()
             newContact.name = binding.editTextTextPersonName.text.toString()
-
             insert(newContact)
         }
     }

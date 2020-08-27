@@ -9,8 +9,9 @@ import androidx.room.Query
 interface ContactDao {
     @Insert
     fun insert(contact: Contact)
-    @Query("SELECT * from contact_table")
-    fun get(): LiveData<List<Contact>>
     @Query("DELETE FROM contact_table")
     fun clear()
+    @Query("SELECT * from contact_table")
+    fun get(): LiveData<List<Contact>>
+
 }
