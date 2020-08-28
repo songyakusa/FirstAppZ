@@ -1,5 +1,6 @@
 package com.example.firstappz.data
 
+import android.provider.ContactsContract
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,7 +12,7 @@ data class Contact (
     var id: Long = 0L,
 
     @ColumnInfo(name = "name")
-    var name: String = "unnamed",
+    var name: String = "unnamed"
 
 
 

@@ -12,7 +12,9 @@ import androidx.lifecycle.Transformations
 import com.example.firstappz.data.Contact
 import com.example.firstappz.data.ContactDao
 import com.example.firstappz.databinding.FragmentContactBinding
+import kotlinx.android.synthetic.main.fragment_contact.view.*
 import kotlinx.coroutines.*
+import java.nio.file.Files.delete
 
 class ContactViewModel(
     private val contactDao: ContactDao,
@@ -34,8 +36,6 @@ class ContactViewModel(
         sb.apply {
             //append(resources.getString(R.string.title))
             contact.forEach {
-                append(it.id)
-                append(" : ")
                 append(it.name)
                 append("<br>")
             }
@@ -51,7 +51,14 @@ class ContactViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
-//fun add
+
+    private suspend fun insert(contact: Contact) {
+        withContext(Dispatchers.IO) {
+            contactDao.insert(contact)
+        }
+    }
+
+    //fun add
     fun onContactAdd() {
         uiScope.launch {
             val newContact = Contact()
@@ -59,35 +66,36 @@ class ContactViewModel(
             insert(newContact)
         }
     }
-    private suspend fun insert(contact: Contact) {
-        withContext(Dispatchers.IO) {
-            contactDao.insert(contact)
-        }
-    }
 
-
-//fun clear
+    //fun clear
     fun onClear() {
         uiScope.launch {
             clear()
             contact.value = null
         }
     }
-    private val _navigateToSleepQuality = MutableLiveData<Contact>()
 
-    val navigateToSleepQuality: LiveData<Contact>
-        get() = _navigateToSleepQuality
+    //    private val _navigateToContact = MutableLiveData<Contact>()
+//
+//    val navigateToContact: LiveData<Contact>
+//        get() = _navigateToContact
+//
+//    fun doneNavigating() {
+//        _navigateToContact.value = null
+//    }
+//fub delete
+//    suspend fun onDelete() {
+//        withContext(Dispatchers.IO) {
+//            contactDao.delete()
+//        }
+//    }
 
-    fun doneNavigating() {
-        _navigateToSleepQuality.value = null
-    }
 
     suspend fun clear() {
         withContext(Dispatchers.IO) {
             contactDao.clear()
         }
     }
-
 
 
 }

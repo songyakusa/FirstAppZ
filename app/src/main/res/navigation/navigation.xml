@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/aboutmeFragment"
         android:name="com.example.firstappz.fragmant.AboutmeFragment"
-        android:label="fragment_aboutme"
+        android:label="Aboutme"
         tools:layout="@layout/fragment_aboutme" >
         <action
             android:id="@+id/action_aboutmeFragment_to_contactFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/contactFragment"
         android:name="com.example.firstappz.fragmant.ContactFragment"
-        android:label="fragment_contact"
+        android:label="Contact"
         tools:layout="@layout/fragment_contact" >
         <action
             android:id="@+id/action_contactFragment_to_aboutmeFragment"
